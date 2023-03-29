@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "900756320711",
+    "firebase_url": "https://koreanrestaurantapp-5b063-default-rtdb.firebaseio.com",
+    "project_id": "koreanrestaurantapp-5b063",
+    "storage_bucket": "koreanrestaurantapp-5b063.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900756320711:android:334034c1a6efad5b28e9e2",
+        "android_client_info": {
+          "package_name": "com.example.koreanrestaurantapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900756320711-i1hd3p2m5ql3i3ecv053o427l4toq8m6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.koreanrestaurantapp",
+            "certificate_hash": "6c6690df1da439e8549c42cc0c48b1724d3db6b5"
+          }
+        },
+        {
+          "client_id": "900756320711-1nrkunopgflp9of06ibk0hp30odj1jbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQoiAwYSeQerZzNMi6VEQVwhVN60wRogA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900756320711-1nrkunopgflp9of06ibk0hp30odj1jbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
