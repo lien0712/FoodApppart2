@@ -21,6 +21,7 @@
             android:layout_height="match_parent"
             android:id="@+id/menu_name"
             android:text="Name of menu"
+            android:textColor="@color/orange"
             android:background="@color/overlayBackground"
             android:textSize="20sp"
             android:layout_alignParentBottom="true"

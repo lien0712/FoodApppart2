@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 public class FoodDetail extends AppCompatActivity {
 
     TextView food_name, food_price, food_description, food_increase_number;
-    ImageView food_image;
+    ImageView food_image,plusBtn,minusBtn;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart;
 
@@ -33,7 +33,7 @@ public class FoodDetail extends AppCompatActivity {
     DatabaseReference food;
 
     Food currentFood;
-
+    int numberOrder=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,24 @@ public class FoodDetail extends AppCompatActivity {
         food=database.getReference("Food");
 
         food_increase_number= (TextView) findViewById(R.id.food_increase_number);
+        food_increase_number.setText(String.valueOf(numberOrder));
+        plusBtn=(ImageView) findViewById(R.id.plusBtn);
+        plusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOrder+=1;
+                food_increase_number.setText(String.valueOf(numberOrder));
+            }
+        });
+        minusBtn= findViewById(R.id.minusBtn);
+        minusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOrder-=1;
+                food_increase_number.setText(String.valueOf(numberOrder));
+            }
+        });
+
         btnCart=(FloatingActionButton) findViewById(R.id.btnCart);
 
         btnCart.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +70,7 @@ public class FoodDetail extends AppCompatActivity {
                 new Database(getBaseContext()).addToCart(new Order(
                         foodId,
                         currentFood.getName(),
-                        Integer.parseInt(String.valueOf(food_increase_number.getText())),
+                        String.valueOf(numberOrder),
                         currentFood.getPrice(),
                         currentFood.getDiscount()
                 ));

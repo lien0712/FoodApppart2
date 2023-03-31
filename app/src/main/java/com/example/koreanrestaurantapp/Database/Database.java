@@ -36,7 +36,12 @@ public class Database extends SQLiteAssetHelper {
         final List<Order> result= new ArrayList<>();
         if (c.moveToFirst()){
             do {
-                result.add(new Order(c.getString(c.getColumnIndex("ProductId")),c.getString(c.getColumnIndex("ProductName")),c.getString(c.getColumnIndex("Quantity")),c.getString(c.getColumnIndex("Price")),c.getString(c.getColumnIndex("Discount"))));
+                result.add(new Order(
+                        c.getString(c.getColumnIndex("ProductId")),
+                        c.getString(c.getColumnIndex("ProductName")),
+                        c.getString(c.getColumnIndex("Quantity")),
+                        c.getString(c.getColumnIndex("Price")),
+                        c.getString(c.getColumnIndex("Discount"))));
             } while (c.moveToNext());
         }
         return result;
@@ -48,7 +53,8 @@ public class Database extends SQLiteAssetHelper {
                 order.getProductId(),
                 order.getProductName(),
                 order.getQuantity(),
-                order.getPrice(),order.getDiscount());
+                order.getPrice(),
+                order.getDiscount());
         db.execSQL(query);
     }
 
