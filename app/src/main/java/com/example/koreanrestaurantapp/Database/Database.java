@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Database extends SQLiteAssetHelper {
 
-    private static String DB_NAME="database.db";
+    private static String DB_NAME="orderDetail.db";
     private static int DB_VER=1;
 
 
@@ -27,8 +27,8 @@ public class Database extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb= new SQLiteQueryBuilder();
 
-        String[] sqlSelect={"ProductId","ProductName","Quantity","Price","Discount"};
-        String sqlTable="orderDetail";
+        String[] sqlSelect={"ProductID","ProductName","Quantity","Price","Discount"};
+        String sqlTable="OrderDetail";
 
         qb.setTables(sqlTable);
         Cursor c= qb.query(db, sqlSelect,null,null,null,null,null);
@@ -37,7 +37,7 @@ public class Database extends SQLiteAssetHelper {
         if (c.moveToFirst()){
             do {
                 result.add(new Order(
-                        c.getString(c.getColumnIndex("ProductId")),
+                        c.getString(c.getColumnIndex("ProductID")),
                         c.getString(c.getColumnIndex("ProductName")),
                         c.getString(c.getColumnIndex("Quantity")),
                         c.getString(c.getColumnIndex("Price")),
@@ -49,7 +49,7 @@ public class Database extends SQLiteAssetHelper {
 
     public void addToCart(Order order){
         SQLiteDatabase db = getReadableDatabase();
-        String query = String.format("INSERT INTO OrderDetail(ProductId,ProductName,Quantity,Price,Discount) VALUES ('%s','%s','%s','%s','%s');",
+        String query = String.format("INSERT INTO OrderDetail(ProductID,ProductName,Quantity,Price,Discount) VALUES ('%s','%s','%s','%s','%s');",
                 order.getProductId(),
                 order.getProductName(),
                 order.getQuantity(),
@@ -60,7 +60,7 @@ public class Database extends SQLiteAssetHelper {
 
     public void cleanCart(){
         SQLiteDatabase db= getReadableDatabase();
-        String query = String.format("DELETE FROM OderDetail");
+        String query = String.format("DELETE FROM OrderDetail");
         db.execSQL(query);
     }
 

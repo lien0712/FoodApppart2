@@ -18,6 +18,7 @@ import com.example.koreanrestaurantapp.Common.Common;
 import com.example.koreanrestaurantapp.Database.Database;
 import com.example.koreanrestaurantapp.ViewHolder.CartAdapter;
 import com.example.koreanrestaurantapp.model.Order;
+import com.example.koreanrestaurantapp.model.Request;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -89,7 +90,7 @@ public class Cart extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //create new request
-                RequestOrder requestOrder= new RequestOrder(
+                Request requestOrder= new Request(
                         Common.currentUser.getPhone(),
                         Common.currentUser.getName(),
                         edtAdress.getText().toString(),
@@ -98,7 +99,8 @@ public class Cart extends AppCompatActivity {
                 );
 
                 //submit to firebase
-                request.child(String.valueOf(System.currentTimeMillis())).setValue(request);
+                request.child(String.valueOf(System.currentTimeMillis())).setValue(requestOrder);
+                //delete cart
                 new Database(getBaseContext()).cleanCart();
                 Toast.makeText( Cart.this,"Thanks for ordering", Toast.LENGTH_SHORT).show();
                 finish();

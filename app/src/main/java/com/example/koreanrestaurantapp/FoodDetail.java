@@ -24,16 +24,18 @@ import com.squareup.picasso.Picasso;
 public class FoodDetail extends AppCompatActivity {
 
     TextView food_name, food_price, food_description, food_increase_number;
-    ImageView food_image,plusBtn,minusBtn;
+    ImageView food_image;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnCart;
+    ImageView minusBtn, plusBtn;
+    int quantity=1;
 
     String foodId="";
     FirebaseDatabase database;
     DatabaseReference food;
 
     Food currentFood;
-    int numberOrder=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +46,23 @@ public class FoodDetail extends AppCompatActivity {
         food=database.getReference("Food");
 
         food_increase_number= (TextView) findViewById(R.id.food_increase_number);
-        food_increase_number.setText(String.valueOf(numberOrder));
-        plusBtn=(ImageView) findViewById(R.id.plusBtn);
-        plusBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberOrder+=1;
-                food_increase_number.setText(String.valueOf(numberOrder));
-            }
-        });
-        minusBtn= findViewById(R.id.minusBtn);
+        minusBtn=(ImageView) findViewById(R.id.minusBtn);
         minusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numberOrder-=1;
-                food_increase_number.setText(String.valueOf(numberOrder));
+                if (quantity>1){
+                    quantity -=1;
+                }
+                food_increase_number.setText(String.valueOf(quantity));
+            }
+        });
+
+        plusBtn= (ImageView) findViewById(R.id.plusBtn);
+        plusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quantity +=1;
+                food_increase_number.setText(String.valueOf(quantity));
             }
         });
 
@@ -70,7 +74,7 @@ public class FoodDetail extends AppCompatActivity {
                 new Database(getBaseContext()).addToCart(new Order(
                         foodId,
                         currentFood.getName(),
-                        String.valueOf(numberOrder),
+                        String.valueOf(quantity),
                         currentFood.getPrice(),
                         currentFood.getDiscount()
                 ));

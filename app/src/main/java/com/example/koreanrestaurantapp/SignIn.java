@@ -25,6 +25,7 @@ public class SignIn extends AppCompatActivity {
 
     Button btnSignIn;
     EditText edtPhone, edtPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class SignIn extends AppCompatActivity {
                             //Get user information
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             user.setPhone(edtPhone.getText().toString());//set phone
+
                             if( user.getPassword().equals(edtPassword.getText().toString())){
 //                                Toast.makeText(SignIn.this,"Sign in successfully",Toast.LENGTH_SHORT).show();
                                 Intent homeIntent = new Intent(SignIn.this,Home.class);
